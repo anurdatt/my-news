@@ -33,6 +33,7 @@ export class HeadlinesComponent implements OnInit, OnDestroy {
 
   getCategoryData(category) {
     //console.log(category);
+    this.news = null;
     this.newsSubscription = this.newsService.getData(`everything?q=${category.toLowerCase()}`).subscribe(data => {
       this.news = data;
     });

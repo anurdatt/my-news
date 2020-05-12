@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { HeadlinesComponent } from './headlines/headlines.component';
-import { SourcesComponent } from './sources/sources.component';
-import { FavoritesComponent } from './favorites/favorites.component';
-
+import { HeadlinesModule } from './headlines/headlines.module';
+import { SourcesModule } from './sources/sources.module';
+import { FavoritesModule } from './favorites/favorites.module';
 
 const routes: Routes = [
   {
@@ -13,15 +12,15 @@ const routes: Routes = [
   },
   {
     path: 'headlines',
-    component: HeadlinesComponent
+    loadChildren: './headlines/headlines.module#HeadlinesModule'
   },
   {
     path: 'sources',
-    component: SourcesComponent
+    loadChildren: './sources/sources.module#SourcesModule'
   },
   {
     path: 'favorites',
-    component: FavoritesComponent
+    loadChildren: './favorites/favorites.module#FavoritesModule'
   }
 
 ];
