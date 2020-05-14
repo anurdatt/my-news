@@ -12,8 +12,8 @@ export class HeadlinesComponent implements OnInit, OnDestroy {
   newsSubscription;
 
   categories:string[] = [
-    "World",
-    "India",
+    "General",
+    "Health",
     "Business",
     "Technology",
     "Science",
@@ -34,8 +34,16 @@ export class HeadlinesComponent implements OnInit, OnDestroy {
   getCategoryData(category) {
     //console.log(category);
     this.news = null;
-    this.newsSubscription = this.newsService.getData(`everything?q=${category.toLowerCase()}`).subscribe(data => {
+    this.newsSubscription = this.newsService.getData(`top-headlines?category=${category.toLowerCase()}`).subscribe(data => {
       this.news = data;
+      let flags = {};
+      this.news['articles'] = data['articles'].filter((entry) => {
+        if (flags[entry['title']]) {
+          return false;
+        }
+        flags[entry['title']] = true;
+        return true;
+      });
     });
   }
 
