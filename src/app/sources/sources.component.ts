@@ -25,7 +25,7 @@ export class SourcesComponent implements OnInit, OnDestroy {
   }
 
   getSourcesData() {
-   this.newsSubscription = this.newsService.getData('sources?').subscribe(
+    this.newsSubscription = this.newsService.getData('sources?').subscribe(
       (data) => {
         const sourceList = data['sources'];
         for (let index = 0; index < sourceList.length; index++) {
@@ -43,6 +43,7 @@ export class SourcesComponent implements OnInit, OnDestroy {
   }
 
   getData() {
+    this.news = null;
     this.newsSubscription = this.newsService.getData(`top-headlines?sources=${this.selectedSourceId}`)
     .subscribe(
       (data) => {

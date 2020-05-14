@@ -19,12 +19,13 @@ export class HeadlinesComponent implements OnInit, OnDestroy {
     "Science",
     "Entertainment",
     "Sports"
-  ]
+  ];
+  selectedCategory = "General";
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.getCategoryData(this.categories[0]);
+    this.getCategoryData(this.selectedCategory);
   }
 
   ngOnDestroy(): void {
@@ -34,7 +35,8 @@ export class HeadlinesComponent implements OnInit, OnDestroy {
   getCategoryData(category) {
     //console.log(category);
     this.news = null;
-    this.newsSubscription = this.newsService.getData(`top-headlines?category=${category.toLowerCase()}`).subscribe(data => {
+    this.selectedCategory = category;
+    this.newsSubscription = this.newsService.getData(`top-headlines?country=us&category=${category.toLowerCase()}`).subscribe(data => {
       this.news = data;
       let flags = {};
       this.news['articles'] = data['articles'].filter((entry) => {

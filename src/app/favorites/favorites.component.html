@@ -13,7 +13,7 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Read more</button>
+        <a mat-button [href]="article.url" target="_blank">Read more</a>
         <button mat-button (click) = "onUnFavorite(article)">UnFavorite</button>
       </mat-card-actions>
     </mat-card>
